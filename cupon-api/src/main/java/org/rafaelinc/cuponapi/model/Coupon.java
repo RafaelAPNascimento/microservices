@@ -1,10 +1,13 @@
 package org.rafaelinc.cuponapi.model;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -15,7 +18,18 @@ public class Coupon {
     private Long id;
     private String code;
     private BigDecimal discount;
-    private LocalDateTime expireDate;
+    private LocalDate expireDate;
+
+    public Coupon() {}
+
+    public Coupon(String code, int discount, String expire) {
+
+        this.discount = BigDecimal.valueOf(discount);
+        this.code = code;
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.expireDate = LocalDate.parse(expire, dtf);
+    }
 
     public Long getId() {
         return id;
@@ -41,11 +55,11 @@ public class Coupon {
         this.discount = discount;
     }
 
-    public LocalDateTime getExpireDate() {
+    public LocalDate getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(LocalDateTime expireDate) {
+    public void setExpireDate(LocalDate expireDate) {
         this.expireDate = expireDate;
     }
 
