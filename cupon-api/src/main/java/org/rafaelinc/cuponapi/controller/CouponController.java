@@ -29,4 +29,6 @@ public class CouponController {
     public Coupon getCoupon(@PathVariable String code) {
         return couponRepository.findByCode(code);
     }
+
+
 }

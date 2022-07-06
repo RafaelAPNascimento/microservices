@@ -25,12 +25,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
         User user = userRepository.findByEmail(username);
 
         if (isNull(user)){
-            log.info("========\nNOT FOUND, user is null");
             throw new UsernameNotFoundException(String.format("User not found for email %s", username));
         }
-
-        log.info("======== FOUND\n");
-        log.info(user.toString());
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getRoles());
     }

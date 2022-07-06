@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -90,13 +91,17 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        String to = "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
+                ", roles=";
+
+        for (Role role : roles) {
+            to.concat(role.getName() +", ");
+        }
+        return to;
     }
 }

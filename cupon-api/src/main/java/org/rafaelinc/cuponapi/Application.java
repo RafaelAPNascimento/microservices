@@ -24,8 +24,8 @@ public class Application {
     CommandLineRunner commandLineRunner(UserRepository userRepository, RoleRepository roleRepository, CouponRepository couponRepository) {
 
         return args -> {
-            User user1 = new User("doug","bailey","doug@bailey.com","$2a$10$U2STWqktwFbvPPsfblVeIuy11vQ1S/0LYLeXQf1ZL0cMXc9HuTEA2");
-            User user2 = new User("john","ferguson","john@ferguson.com","$2a$10$YzcbPL.fnzbWndjEcRkDmO1E4vOvyVYP5kLsJvtZnR1f8nlXjvq/G");
+            User doug = new User("doug","bailey","doug@bailey.com","$2a$10$U2STWqktwFbvPPsfblVeIuy11vQ1S/0LYLeXQf1ZL0cMXc9HuTEA2");
+            User john = new User("john","ferguson","john@ferguson.com","$2a$10$YzcbPL.fnzbWndjEcRkDmO1E4vOvyVYP5kLsJvtZnR1f8nlXjvq/G");
 
 //            User user1 = new User("doug","bailey","doug@bailey.com","123456");
 //            User user2 = new User("john","ferguson","john@ferguson.com","123456");
@@ -33,17 +33,17 @@ public class Application {
             Role admin = new Role("ROLE_ADMIN");
             Role user = new Role("ROLE_USER");
 
-            Set<Role> s1 = Set.of(admin);
-            Set<Role> s2 = Set.of(user);
+            Set<Role> adminRole = Set.of(admin);
+            Set<Role> userRole = Set.of(user);
 
-            user1.setRoles(s1);
-            user2.setRoles(s2);
+            doug.setRoles(adminRole);
+            john.setRoles(userRole);
 
             roleRepository.save(admin);
             roleRepository.save(user);
 
-            userRepository.save(user1);
-            userRepository.save(user2);
+            userRepository.save(doug);
+            userRepository.save(john);
 
             Coupon coupon = new Coupon("SUPERSALE", 10, "2020-06-25");
             couponRepository.save(coupon);

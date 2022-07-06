@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface CouponRepository extends JpaRepository<Coupon, Long> {
 
     public Coupon findByCode(String code);
+
+
 }

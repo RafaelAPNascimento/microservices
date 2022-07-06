@@ -1,5 +1,6 @@
 package org.rafaelinc.cuponapi.model;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.Set;
 
+@Slf4j
 @Entity
 public class Role implements GrantedAuthority {
 
@@ -28,7 +30,8 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return getName();
+
+        return name;
     }
 
     public Long getId() {
